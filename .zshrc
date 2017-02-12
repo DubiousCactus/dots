@@ -7,8 +7,8 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME="miloshadzic"
-
+#ZSH_THEME="miloshadzic"
+ZSH_THEME="mh"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -92,3 +92,5 @@ alias serve='php artisan serve'
 alias tinker='php artisan tinker'
 
 eval `dircolors ~/.solarized/dircolors.ansi-dark`
+source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/z/z.sh
