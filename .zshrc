@@ -8,7 +8,9 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
 #ZSH_THEME="miloshadzic"
-ZSH_THEME="mh"
+#ZSH_THEME="mh"
+ZSH_THEME="spaceship"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
