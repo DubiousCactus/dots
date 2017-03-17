@@ -1,15 +1,14 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/transpalette/.oh-my-zsh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
-#ZSH_THEME="miloshadzic"
-#ZSH_THEME="mh"
-ZSH_THEME="spaceship"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="agnosterzak"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -22,7 +21,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -31,7 +30,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -56,8 +55,9 @@ ZSH_THEME="spaceship"
 plugins=(git,extract,z)
 
 source $ZSH/oh-my-zsh.sh
-#include Z, yo
-#. ~/z.sh
+
+if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -86,13 +86,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-alias fucking=sudo
-alias install='zypper in'
 alias artisan='php artisan'
 alias serve='php artisan serve'
 alias tinker='php artisan tinker'
-
-eval `dircolors ~/.solarized/dircolors.ansi-dark`
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/z/z.sh
+alias commit='git commit -m '
+alias push='git push'
+alias pull='git pull'
+alias attach='tmux attach -t '
+alias phpunit='vendor/phpunit/phpunit/phpunit'
+alias space='df -h'
+alias zshrc='vim ~/.zshrc'
