@@ -61,8 +61,12 @@ nmap <C-R> :CtrlPBufTag<cr>
 nmap <C-e> :CtrlPMRUFiles<cr>
 
 "Tabs management
-nmap <C-Left> :tabp<cr>
-nmap <C-Right> :tabn<cr>
+nmap <C-t> :tabnew<cr>
+nmap <C-Left> :tabprevious<cr>
+nmap <C-Right> :tabnext<cr>
+
+"Redo (because ctrl-r is used by CTRL-P)
+nmap r :redo<cr>
 
 " Down is really the next line
 nnoremap j gj
@@ -71,6 +75,8 @@ nnoremap k gk
 "Easy escaping to normal model
 imap jj <esc>
 
+" Run PHPUnit tests
+map <Leader>ut :!vendor/bin/phpunit<cr>
 
 "---------Auto-Commands-----"
 
@@ -105,3 +111,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 set laststatus=2 "always show the status line
 set encoding=utf-8 "For unicode glyphs
 set noshowmode " Hide the default mode text
+
+"Tagbar
+nmap <Leader>t :TagbarToggle<cr>
+
+"YCMD
+let g:ycm_server_python_interpreter = "/usr/bin/python2"

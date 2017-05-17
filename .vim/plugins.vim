@@ -14,7 +14,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'valloric/youcompleteme'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'mattn/emmet-vim'
+Plugin 'jwalton512/vim-blade'
+Plugin 'tpope/vim-surround'
+Plugin 'majutsushi/tagbar'
+Plugin 'valloric/youcompleteme'
+Plugin 'shawncplus/phpcomplete.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
