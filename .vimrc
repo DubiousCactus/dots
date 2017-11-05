@@ -49,6 +49,7 @@ set incsearch
 
 "Make it easy to edit the Vimrc file."
 nmap <Leader>ev :tabedit ~/.vimrc<cr>
+nmap <Leader>ep :tabedit ~/.vim/plugins.vim<cr>
 
 "Turn off highlighting"
 nmap <Leader><space> :nohlsearch<cr>
@@ -86,6 +87,9 @@ augroup autosourcing
 	autocmd BufWritePost .vimrc source %
 augroup end
 
+"Set omnifunc to complete CSS
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
 "---------Split Management--------"
 set splitbelow
 set splitright
@@ -116,4 +120,4 @@ set noshowmode " Hide the default mode text
 nmap <Leader>t :TagbarToggle<cr>
 
 "YCMD
-let g:ycm_server_python_interpreter = "/usr/bin/python2"
+let g:ycm_server_python_interpreter = "/usr/bin/python3"

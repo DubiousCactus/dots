@@ -10,8 +10,9 @@ export TERM=xterm-256color
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnosterzak"
-
+#ZSH_THEME="agnosterzak"
+#ZSH_THEME="dallas"
+ZSH_THEME="af-magic"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -97,3 +98,5 @@ alias attach='tmux attach -t '
 alias phpunit='vendor/phpunit/phpunit/phpunit'
 alias space='df -h'
 alias zshrc='vim ~/.zshrc'
+alias update='sudo pacman -Syu && yaourt -Syua --devel'
+
