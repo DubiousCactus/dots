@@ -110,6 +110,7 @@ let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
 let NERDTreeHijackNetrw = 0
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeIgnore=['\.aux$', '\.out$', '\.bbl$', '\.blg$', '\.fls$', '\.pdf$', '\.toc$', '\.lot$', '\.lof$', '\.bib$', '\.gz$', '\.fdb_latexmk$']
 
 " Airline
 set laststatus=2 "always show the status line
