@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/transpalette/Code/nand2tetris/projects/03'
-let g:netrw_dirhist_2='/home/transpalette/Code/nand2tetris/projects'
-let g:netrw_dirhist_3='/home/transpalette/Code/nand2tetris/projects/02'

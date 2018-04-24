@@ -4,15 +4,16 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/us
 # Path to your oh-my-zsh installation.
   export ZSH=/home/transpalette/.oh-my-zsh
 
-export TERM=xterm-256color
+#export TERM=xterm-256colorize
+
+source ~/.profile
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnosterzak"
-#ZSH_THEME="dallas"
-ZSH_THEME="af-magic"
+ZSH_THEME="agnosterzak"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -98,5 +99,11 @@ alias attach='tmux attach -t '
 alias phpunit='vendor/phpunit/phpunit/phpunit'
 alias space='df -h'
 alias zshrc='vim ~/.zshrc'
-alias update='sudo pacman -Syu && yaourt -Syua --devel'
-
+alias fastboot='/opt/android-sdk/platform-tools/fastboot'
+alias unlock-tethering='sysctl net.ipv4.ip_default_ttl=65'
+alias tmux='TERM=xterm-256color tmux'
+alias vivado='/opt/Xilinx/Vivado/2017.2/bin/vivado'
+alias vivado_hls='/opt/Xilinx/Vivado_HLS/2017.2/bin/vivado_hls'
+alias msp430-gcc='msp430-elf-gcc'
+alias gitopullito='git pull'
+alias gitocommito='git commit'

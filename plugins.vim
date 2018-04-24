@@ -27,6 +27,12 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'othree/csscomplete.vim'
 Plugin 'lervag/vimtex'
 Plugin 'dracula/vim'
+Plugin 'vim-scripts/vdm.vim'
+Plugin 'tpope/vim-sleuth'
+Plugin 'vim-scripts/NesC-Syntax-Highlighting'
+Plugin 'ajmwagar/vim-deus'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'vim-syntastic/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

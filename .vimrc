@@ -1,6 +1,11 @@
 so ~/.vim/plugins.vim
 
 
+"---------VIM config---------"
+"Save swap files in home folder
+set dir=$HOME/.vim_tmp/swap
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
 "---------Visuals------------"
 
 "Credit joshdick
@@ -12,18 +17,17 @@ if (has("nvim"))
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 	"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-	"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-	" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+
 if (has("termguicolors"))
 	set termguicolors
 endif
 
 syntax enable
-"let g:airline_theme='one' doesn't work :/
-colorscheme one
+"let g:airline_theme='jet'
+let g:airline_theme='deus'
+colorscheme deus
 set background=dark
 let g:airline#extensions#tabline#enabled = 1
-"set guifont=Fira_Code:18
 set ff=unix
 set backspace=indent,eol,start
 let mapleader = ','  "Default leader"
@@ -36,10 +40,15 @@ set copyindent
 set ignorecase "ignore case for search
 set smartcase
 set noerrorbells "No beep
+"set ttymouse=xterm2
 set mouse=a "Use mouse cursor
 set t_Co=256
 set t_ut= "Fix Background Color Erase
 
+"--------Vim Deus theme-------"
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:deus_termcolors=256
 
 "---------Searching----------"
 set hlsearch
@@ -104,13 +113,14 @@ nmap <C-L> <C-W><C-L>
 
 "CTRL+P
 let g:ctrlp_custom_ignore = 'node_modules'
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:15,results:15'
 
 "NERDTree
 let NERDTreeHijackNetrw = 0
+let NERDTreeIgnore=['\.aux$', '\.out$', '\.bbl$', '\.blg$', '\.fls$', '\.pdf$', '\.toc$', '\.lot$', '\.lof$', '\.bib$', '\.gz$', '\.fdb_latexmk$', '\.o$']
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let NERDTreeIgnore=['\.aux$', '\.out$', '\.bbl$', '\.blg$', '\.fls$', '\.pdf$', '\.toc$', '\.lot$', '\.lof$', '\.bib$', '\.gz$', '\.fdb_latexmk$']
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Airline
 set laststatus=2 "always show the status line
@@ -122,3 +132,16 @@ nmap <Leader>t :TagbarToggle<cr>
 
 "YCMD
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
+
+"VDM-SL Syntax
+au BufNewFile,BufRead *.vdm*     setf vdm
+
+"Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
