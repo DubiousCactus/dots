@@ -33,6 +33,7 @@ Plugin 'vim-scripts/NesC-Syntax-Highlighting'
 Plugin 'ajmwagar/vim-deus'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'kien/rainbow_parentheses.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
