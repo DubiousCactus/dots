@@ -34,6 +34,17 @@ Plugin 'ajmwagar/vim-deus'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -45,6 +45,44 @@ set mouse=a "Use mouse cursor
 set t_Co=256
 set t_ut= "Fix Background Color Erase
 
+"--------Code Folding--------"
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+"---------Proper PEP8 Indentation (for Python)------"
+au BufNewFile,BufRead *.py :
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+"----------Indentation for full-stack dev----------"
+au BufNewFile,BufRead *.js, *.html, *.css :
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+"------------Flag un-necessary white spaces--------------"
+"define BadWhitespace
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"-----------Python with virtualenv support--------------"
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 "--------Vim Deus theme-------"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -63,12 +101,12 @@ nmap <Leader>ep :tabedit ~/.vim/plugins.vim<cr>
 "Turn off highlighting"
 nmap <Leader><space> :nohlsearch<cr>
 
+"Insert new line in normal mode
+nmap oo o<esc>k
+nmap OO O<esc>j
+
 "Make NERDTree easier to toggle.
 nmap <Leader>1 :NERDTreeToggle<cr>
-
-"Tag search
-nmap <C-R> :CtrlPBufTag<cr>
-nmap <C-e> :CtrlPMRUFiles<cr>
 
 "Tabs management
 nmap <C-t> :tabnew<cr>
@@ -112,14 +150,28 @@ nmap <C-L> <C-W><C-L>
 "---------Plugins--------"
 
 "CTRL+P
-let g:ctrlp_custom_ignore = 'node_modules'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules|__pycache__',
+  \ 'file': '\v\.(exe|so|dll)$|(__init__.py)',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:15,results:15'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    "Tag search
+nmap <C-R> :CtrlPBufTag<cr>
+nmap <C-e> :CtrlPMRUFiles<cr>
 
 "NERDTree
 let NERDTreeHijackNetrw = 0
-let NERDTreeIgnore=['\.aux$', '\.out$', '\.bbl$', '\.blg$', '\.fls$', '\.pdf$', '\.toc$', '\.lot$', '\.lof$', '\.bib$', '\.gz$', '\.fdb_latexmk$', '\.o$']
+let NERDTreeIgnore=[
+	\ '\.aux$', '\.out$', '\.bbl$', '\.blg$', '\.fls$', '\.pdf$',
+	\ '\.toc$', '\.lot$', '\.lof$', '\.bib$', '\.gz$', '\.fdb_latexmk$',
+	\ '\.o$', '\.pyc$', '\~$', 'tags', 'model.ckpt.*', 'LICENSE',
+	\ 'checkpoint', '__init__.py', '__pycache__', 'vendor', 'node_modules'
+	\]
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Airline
@@ -130,18 +182,35 @@ set noshowmode " Hide the default mode text
 "Tagbar
 nmap <Leader>t :TagbarToggle<cr>
 
-"YCMD
+"YouCompleteMe
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "VDM-SL Syntax
 au BufNewFile,BufRead *.vdm*     setf vdm
 
 "Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+"Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"Ctrl+Space
+"set nocompatible
+"set hidden
+"set showtabline=0
+"if executable("ag")
+    "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+"endif
+"nnoremap <silent><C-p> :CtrlSpace O<CR>
