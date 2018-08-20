@@ -44,6 +44,14 @@ Plugin 'xolox/vim-misc'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'joshdick/onedark.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'rakr/vim-one'
+Plugin 'kana/vim-operator-user'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'RRethy/vim-illuminate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 
 " All of your Plugins must be added before the following line

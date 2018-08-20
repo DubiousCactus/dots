@@ -8,11 +8,15 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/us
 
 source ~/.profile
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnosterzak"
+#ZSH_THEME="agnosterzak"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +57,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z tmux laravel extract colorize cp web-search)
+plugins=(git z tmux laravel extract colorize cp web-search zsh-syntax-highlighting)
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -81,6 +85,15 @@ if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+
+fpath+=('/home/transpalette/.nvm/versions/node/v10.3.0/lib/node_modules/pure-prompt/functions')
+
+autoload -U promptinit; promptinit
+prompt pure
+
+
+ZSH_THEME=""
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -107,3 +120,4 @@ alias vivado_hls='/opt/Xilinx/Vivado_HLS/2017.2/bin/vivado_hls'
 alias msp430-gcc='msp430-elf-gcc'
 alias gitopullito='git pull'
 alias gitocommito='git commit'
+alias man='pinfo -m'

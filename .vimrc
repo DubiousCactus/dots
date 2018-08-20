@@ -24,8 +24,11 @@ endif
 
 syntax enable
 "let g:airline_theme='jet'
-let g:airline_theme='deus'
-colorscheme deus
+"let g:airline_theme='deus'
+"colorscheme deus
+let g:airline_theme='onedark'
+let g:onedark_terminal_italics=1
+colorscheme onedark
 set background=dark
 let g:airline#extensions#tabline#enabled = 1
 set ff=unix
@@ -42,7 +45,7 @@ set smartcase
 set noerrorbells "No beep
 "set ttymouse=xterm2
 set mouse=a "Use mouse cursor
-set t_Co=256
+"set t_Co=256
 set t_ut= "Fix Background Color Erase
 
 "--------Code Folding--------"
@@ -152,7 +155,7 @@ nmap <C-L> <C-W><C-L>
 "CTRL+P
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules|__pycache__',
-  \ 'file': '\v\.(exe|so|dll)$|(__init__.py)',
+  \ 'file': '\v\.(exe|so|dll|o|out|d)$|(__init__.py)',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -214,3 +217,26 @@ au Syntax * RainbowParenthesesLoadBraces
     "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 "endif
 "nnoremap <silent><C-p> :CtrlSpace O<CR>
+
+
+"Clang-Format
+let g:clang_format#code_style = "mozilla"
+let g:clang_format#style_options = {
+	\ "AlwaysBreakAfterReturnType": "None",
+	\ "AllowShortLoopsOnASingleLine": "false",
+	\ "PenaltyReturnTypeOnItsOwnLine": 0,
+	\ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<return>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
