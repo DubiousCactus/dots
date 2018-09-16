@@ -52,6 +52,8 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'RRethy/vim-illuminate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'spf13/vim-autoclose'
 
 
 " All of your Plugins must be added before the following line

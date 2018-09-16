@@ -38,6 +38,7 @@ set number   "Shows line number"
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set expandtab
 set smarttab
 set copyindent
 set ignorecase "ignore case for search
@@ -118,6 +119,9 @@ nmap <C-Right> :tabnext<cr>
 
 "Redo (because ctrl-r is used by CTRL-P)
 nmap r :redo<cr>
+
+" Open a terminal vertically
+nmap <Leader>term :vert term<cr>
 
 " Down is really the next line
 nnoremap j gj
@@ -237,6 +241,9 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<return>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
