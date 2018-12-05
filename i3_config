@@ -231,7 +231,7 @@ mode "$mode_system" {
     bindsym e exec --no-startup-id /home/transpalette/.config/i3/i3exit logout, mode "default"
     bindsym h exec --no-startup-id /home/transpalette/.config/i3/i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id /home/transpalette/.config/i3/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym Shift+s exec --no-startup-id /home/transpalette/.config/i3/i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -293,8 +293,8 @@ mode "$mode_gaps_outer" {
 }
 
 #gap size:
-gaps inner 10
-gaps outer 15
+gaps inner 0
+gaps outer 0
 
 # Autostart applications
 exec --no-startup-id pkill compton
@@ -306,10 +306,10 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id polybar -r top
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec --no-startup-id polybar -r top
 #set the wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/yosemite-2-wallpaper.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/spacesurf.png
 #i3lock-fancy
 exec --no-startup-id xautolock
 bindsym $mod+Control+l exec "lock -df Fira-Code-Bold -- scrot -z"
@@ -317,6 +317,10 @@ bindsym $mod+Control+l exec "lock -df Fira-Code-Bold -- scrot -z"
 exec --no-startup-id pkill dunst
 exec --no-startup-id dunst -config ~/.config/dunstrc
 
+exec --no-startup-id redshift -b 1:0.8 -l 56.162937:10.203921
+
+# Keyboard key repeat delay / speed
+exec --no-startup-id xset r rate 240 100
 
 
 # Apps and settings
@@ -330,9 +334,10 @@ bindsym $mod+minus scratchpad show
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
-#	font pango:Inconsolata 10
-#	tray_output none
-#	status_command ~/bumblebee-status/bumblebee-status -m nic traffic disk:root cpu memory date time weather -p root.path=/ time.format="%H:%M W%V" date.format="%a, %b %d" -t powerline
+    #status_command i3blocks -c /home/transpalette/.config/i3/i3blocks.conf
+    #font pango:Inconsolata 10
+    #tray_output none
+    #status_command ~/bumblebee-status/bumblebee-status -m nic traffic disk:root cpu memory date time weather -p root.path=/ time.format="%H:%M W%V" date.format="%a, %b %d" -t powerline
 #}
 
 # Pulse Audio controls
