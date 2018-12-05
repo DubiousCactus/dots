@@ -35,6 +35,7 @@ set ff=unix
 set backspace=indent,eol,start
 let mapleader = ','  "Default leader"
 set number   "Shows line number"
+set textwidth=80
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -44,7 +45,11 @@ set copyindent
 set ignorecase "ignore case for search
 set smartcase
 set noerrorbells "No beep
-"set ttymouse=xterm2
+
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 set mouse=a "Use mouse cursor
 "set t_Co=256
 set t_ut= "Fix Background Color Erase
@@ -133,6 +138,9 @@ imap jj <esc>
 " Run PHPUnit tests
 map <Leader>ut :!vendor/bin/phpunit<cr>
 
+" Easy save
+nmap <Leader>w :w<cr>
+
 "---------Auto-Commands-----"
 
 "Automatically source the Vinrc file on save."
@@ -143,6 +151,8 @@ augroup end
 
 "Set omnifunc to complete CSS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
+autocmd BufNewFile,BufRead *.grm set syntax=sml
 
 "---------Split Management--------"
 set splitbelow
@@ -159,12 +169,12 @@ nmap <C-L> <C-W><C-L>
 "CTRL+P
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules|__pycache__',
-  \ 'file': '\v\.(exe|so|dll|o|out|d)$|(__init__.py)',
+  \ 'file': '\v\.(exe|so|dll|o|out|d|dat)$|(__init__.py)',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:15,results:15'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.dat     " MacOSX/Linux
     "Tag search
 nmap <C-R> :CtrlPBufTag<cr>
 nmap <C-e> :CtrlPMRUFiles<cr>
@@ -202,10 +212,10 @@ au BufNewFile,BufRead *.vdm*     setf vdm
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 "Rainbow parentheses
 au VimEnter * RainbowParenthesesToggle
@@ -247,3 +257,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
+
+" Disable LaTeX-Box in vim-polyglot"
+let g:polyglot_disabled = ['latex']
