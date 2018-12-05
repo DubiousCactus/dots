@@ -1,16 +1,22 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
+# added by Anaconda3 installer
+. /code/anaconda3/etc/profile.d/conda.sh
+
 # Path to your oh-my-zsh installation.
   export ZSH=/home/transpalette/.oh-my-zsh
 
 #export TERM=xterm-256colorize
+
+#source /usr/share/doc/mcfly/mcfly.bash
 
 source ~/.profile
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -66,7 +72,6 @@ source $ZSH/oh-my-zsh.sh
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -85,6 +90,11 @@ if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+function virtualenv_info {
+ [ $CONDA_PROMPT_MODIFIER ] && echo `basename $CONDA_PROMPT_MODIFIER`
+}
+
+PROMPT="%{$fg[green]%}$(virtualenv_info)%{$reset_color%}%${PROMPT}"
 
 fpath+=('/home/transpalette/.nvm/versions/node/v10.3.0/lib/node_modules/pure-prompt/functions')
 
@@ -105,7 +115,7 @@ ZSH_THEME=""
 alias artisan='php artisan'
 alias serve='php artisan serve'
 alias tinker='php artisan tinker'
-alias commit='git commit -m '
+alias commit='git commit -am '
 alias push='git push'
 alias pull='git pull'
 alias attach='tmux attach -t '
@@ -121,3 +131,7 @@ alias msp430-gcc='msp430-elf-gcc'
 alias gitopullito='git pull'
 alias gitocommito='git commit'
 alias man='pinfo -m'
+alias sml='rlwrap smlnj'
+alias cat=bat
+alias upgrade='trizen -Syu --noinfo --noedit --noconfirm'
+alias vim=nvim
