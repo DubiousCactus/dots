@@ -26,10 +26,12 @@ syntax enable
 "let g:airline_theme='jet'
 "let g:airline_theme='deus'
 "colorscheme deus
-let g:airline_theme='onedark'
+"let g:airline_theme='onedark'
+"let g:airline_theme='onedark'
 let g:onedark_terminal_italics=1
-colorscheme onedark
-set background=dark
+colorscheme neodark
+let g:neodark#solid_vertsplit = 1
+"set background=dark
 let g:airline#extensions#tabline#enabled = 1
 set ff=unix
 set backspace=indent,eol,start
@@ -202,6 +204,7 @@ nmap <Leader>t :TagbarToggle<cr>
 "YouCompleteMe
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "VDM-SL Syntax
@@ -253,6 +256,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 " UltiSnips
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<Leader><Space>"
 
 " Vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1

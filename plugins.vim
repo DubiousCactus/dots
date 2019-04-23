@@ -56,6 +56,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'spf13/vim-autoclose'
 Plugin 'javier-lopez/sml.vim'
+Plugin 'fatih/vim-go'
+Plugin 'KeitaNakamura/neodark.vim'
 
 
 " All of your Plugins must be added before the following line
