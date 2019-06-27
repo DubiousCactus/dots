@@ -28,16 +28,17 @@ syntax enable
 "colorscheme deus
 let g:airline_theme='onedark'
 let g:onedark_terminal_italics=1
-colorscheme onedark
+colorscheme neodark
 set background=dark
 let g:airline#extensions#tabline#enabled = 1
 set ff=unix
 set backspace=indent,eol,start
 let mapleader = ','  "Default leader"
-set number   "Shows line number"
+set number relativenumber   "Shows line number"
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set textwidth=79
 set smarttab
 set copyindent
 set ignorecase "ignore case for search
@@ -47,6 +48,13 @@ set noerrorbells "No beep
 set mouse=a "Use mouse cursor
 "set t_Co=256
 set t_ut= "Fix Background Color Erase
+
+set lazyredraw
+
+" MacVim
+set guioptions=
+let g:polyglot_disabled = ['latex']
+
 
 "--------Code Folding--------"
 " Enable folding
@@ -65,6 +73,13 @@ au BufNewFile,BufRead *.py :
     \ set autoindent |
     \ set fileformat=unix |
 
+"--------Auto line number switch -----------------"
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 "----------Indentation for full-stack dev----------"
 au BufNewFile,BufRead *.js, *.html, *.css :
     \ set tabstop=2
@@ -77,14 +92,14 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "-----------Python with virtualenv support--------------"
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+  "project_base_dir = os.environ['VIRTUAL_ENV']
+  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  "execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 "--------Vim Deus theme-------"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -129,6 +144,9 @@ imap jj <esc>
 " Run PHPUnit tests
 map <Leader>ut :!vendor/bin/phpunit<cr>
 
+" Save in 2 keystrokes
+nmap <Leader>w :w<cr>
+
 "---------Auto-Commands-----"
 
 "Automatically source the Vinrc file on save."
@@ -139,6 +157,8 @@ augroup end
 
 "Set omnifunc to complete CSS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
+autocmd BufNewFile,BufRead *.grm set syntax=SML
 
 "---------Split Management--------"
 set splitbelow
@@ -186,22 +206,17 @@ set noshowmode " Hide the default mode text
 nmap <Leader>t :TagbarToggle<cr>
 
 "YouCompleteMe
-let g:ycm_server_python_interpreter = "/usr/bin/python3"
+"let g:ycm_server_python_interpreter = "/usr/local/opt/python@3/bin/python3"
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "VDM-SL Syntax
 au BufNewFile,BufRead *.vdm*     setf vdm
 
-"Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Ale
+let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 "Rainbow parentheses
 au VimEnter * RainbowParenthesesToggle
@@ -237,6 +252,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<return>"
+"let g:UltiSnipsExpandTrigger="<return>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
