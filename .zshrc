@@ -1,22 +1,16 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
-# added by Anaconda3 installer
-. /code/anaconda3/etc/profile.d/conda.sh
-
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/transpalette/.oh-my-zsh
+export ZSH=/home/transpalette/.oh-my-zsh
 
 #export TERM=xterm-256colorize
 
-#source /usr/share/doc/mcfly/mcfly.bash
-
 source ~/.profile
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -35,7 +29,7 @@ export NVM_DIR="$HOME/.nvm"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -44,7 +38,7 @@ export UPDATE_ZSH_DAYS=1
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -63,7 +57,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z tmux laravel extract colorize cp web-search zsh-syntax-highlighting)
+plugins=(git z tmux extract colorize cp zsh-syntax-highlighting archlinux man)
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -72,6 +66,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 
 # User configuration
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,11 +85,6 @@ if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-function virtualenv_info {
- [ $CONDA_PROMPT_MODIFIER ] && echo `basename $CONDA_PROMPT_MODIFIER`
-}
-
-PROMPT="%{$fg[green]%}$(virtualenv_info)%{$reset_color%}%${PROMPT}"
 
 fpath+=('/home/transpalette/.nvm/versions/node/v10.3.0/lib/node_modules/pure-prompt/functions')
 
@@ -104,6 +94,7 @@ prompt pure
 
 ZSH_THEME=""
 
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -112,26 +103,15 @@ ZSH_THEME=""
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias artisan='php artisan'
-alias serve='php artisan serve'
-alias tinker='php artisan tinker'
 alias commit='git commit -am '
 alias push='git push'
 alias pull='git pull'
 alias attach='tmux attach -t '
-alias phpunit='vendor/phpunit/phpunit/phpunit'
 alias space='df -h'
 alias zshrc='vim ~/.zshrc'
 alias fastboot='/opt/android-sdk/platform-tools/fastboot'
 alias unlock-tethering='sysctl net.ipv4.ip_default_ttl=65'
 alias tmux='TERM=xterm-256color tmux'
-alias vivado='/opt/Xilinx/Vivado/2017.2/bin/vivado'
-alias vivado_hls='/opt/Xilinx/Vivado_HLS/2017.2/bin/vivado_hls'
-alias msp430-gcc='msp430-elf-gcc'
-alias gitopullito='git pull'
-alias gitocommito='git commit'
 alias man='pinfo -m'
-alias sml='rlwrap smlnj'
 alias cat=bat
-alias upgrade='trizen -Syu --noinfo --noedit --noconfirm'
-alias vim=nvim
+alias vpn-connect='sudo openvpn --config /etc/openvpn/client.conf'

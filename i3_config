@@ -47,20 +47,22 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
+bindsym $mod+p exec pcmanfm
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show run
 
-bindsym $mod+PrintScreen exec flameshot gui
+#bindsym $mod+PrintScreen exec flameshot gui
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 #use j4-dmenu-desktop instead
-#bindsym $mod+d exec j4-dmenu-desktop
+#bindsym $mod+d exec rofi
 
 # change focus
 bindsym $mod+h focus left
@@ -181,6 +183,13 @@ for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="Pcmanfm"] floating enable
+for_window [window_role="About"] floating enable
+for_window [class="vlc"] floating enable
+for_window [class="(?i)blueman-manager"] floating enable
+for_window [class="nm-connection-editor"] floating enable
+for_window [class="flameshot"] floating enable
+for_window [class="Remarkable"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -253,79 +262,43 @@ mode $audiomenu {
     bindsym Escape        mode "default"
 }
 
-
-#gaps resizing
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-#gap size:
-gaps inner 0
-gaps outer 0
-
 # Autostart applications
 exec --no-startup-id pkill compton
-exec_always --no-startup-id compton --config ~/.config/compton.conf
+exec_always --no-startup-id compton --config ~/.config/compton.conf --blur-method kawase
 exec --no-startup-id nitrogen --restore; sleep 1;
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id autorandr --change
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec --no-startup-id polybar -r top
 #set the wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/spacesurf.png
-#i3lock-fancy
-exec --no-startup-id xautolock
-bindsym $mod+Control+l exec "lock -df Fira-Code-Bold -- scrot -z"
+#exec --no-startup-id feh --bg-scale ~/Pictures/spacesurf.png
+bindsym $mod+Control+l exec "i3lock-fancy -- scrot"
 
 exec --no-startup-id pkill dunst
 exec --no-startup-id dunst -config ~/.config/dunstrc
 
-exec --no-startup-id redshift -b 1:0.8 -l 56.162937:10.203921
+exec --no-startup-id redshift -b 1:0.8 -l 46.3370635:-0.7607668000000001
 
 # Keyboard key repeat delay / speed
 exec --no-startup-id xset r rate 240 100
+exec --no-startup-id xset s off
 
+#exec --no-startup-id albert
+exec --no-startup-id /usr/bin/pasystray
+
+#exec --no-startup-id xrandr --addmode eDP1 1920x1080 && xrandr --addmode HDMI2 1920x1080 && autorandr --change
 
 # Apps and settings
-bindsym $mod+q exec firefox-nightly
+bindsym $mod+q exec firefox
 
+bar {
+        status_command i3status 
+}
 
 #scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -344,3 +317,6 @@ bindsym $mod+minus scratchpad show
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
