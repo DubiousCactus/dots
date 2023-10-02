@@ -1,0 +1,18 @@
+{
+    "python.pythonPath": "~/.conda_for_coc.sh",
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.jediEnabled": false,
+    "diagnostic.checkCurrentLine": true,
+    "python.analysis.useLibraryCodeForTypes": false,
+    "python.analysis.typeCheckingMode": "off",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {"usePlaceholders": true},
+        }
+    },
+}

@@ -1,76 +1,72 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" File              : plugins.vim
+" Date              : 26.01.2021
+" Last Modified Date: 26.01.2021
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'mattn/emmet-vim'
-Plugin 'jwalton512/vim-blade'
-Plugin 'tpope/vim-surround'
-Plugin 'majutsushi/tagbar'
-Plugin 'valloric/youcompleteme'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'aperezdc/vim-template'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'othree/csscomplete.vim'
-Plugin 'lervag/vimtex'
-Plugin 'dracula/vim'
-Plugin 'vim-scripts/vdm.vim'
-Plugin 'tpope/vim-sleuth'
-Plugin 'vim-scripts/NesC-Syntax-Highlighting'
-Plugin 'ajmwagar/vim-deus'
-Plugin 'ryanoasis/vim-devicons'
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'w0rp/ale'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'mhinz/vim-startify'
-Plugin 'tpope/vim-fugitive'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'vim-ctrlspace/vim-ctrlspace'
-"Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'joshdick/onedark.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'rakr/vim-one'
-Plugin 'kana/vim-operator-user'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'RRethy/vim-illuminate'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'spf13/vim-autoclose'
-Plugin 'javier-lopez/sml.vim'
-Plugin 'fatih/vim-go'
-Plugin 'KeitaNakamura/neodark.vim'
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Make sure you use single quotes
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Theming
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'crispybaccoon/dawn.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'arcticicestudio/nord-vim'
+
+"Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow' " Better than kien's
+"Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'junegunn/limelight.vim'
+"Plug 'junegunn/goyo.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-tree/nvim-web-devicons' " This adds colors to the previous
+Plug 'nvim-tree/nvim-tree.lua'
+"Plug 'romgrk/barbar.nvim'
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'preservim/nerdcommenter'
+Plug 'mhinz/vim-startify'
+"Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'lervag/vimtex'
+Plug 'aperezdc/vim-template/'
+Plug 'rhysd/vim-grammarous' 
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'sheerun/vim-polyglot'
+"Plug 'ludovicchabant/vim-gutentags'
+" Python!
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'psf/black'
+
+Plug 'ilyachur/cmake4vim'
+Plug 'tpope/vim-dispatch'
+
+" Go!
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'preservim/tagbar'
+Plug 'brentyi/isort.vim'
+
+Plug 'github/copilot.vim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jackMort/ChatGPT.nvim'
+"Plug 'zbirenbaum/copilot.lua'
+"Plug 'zbirenbaum/copilot-cmp'
+" Initialize plugin system
+call plug#end()
