@@ -1,35 +1,51 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/transpalette/.oh-my-zsh
+export ZSH="/home/cactus/.oh-my-zsh"
 
-#export TERM=xterm-256colorize
+export TERMINFO=/usr/share/terminfo
 
-source ~/.profile
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="bira" # set by `omz`
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnosterzak"
-
+autoload -Uz bashcompinit && bashcompinit
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=7
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -38,7 +54,7 @@ export UPDATE_ZSH_DAYS=7
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
+ ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -50,20 +66,23 @@ export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git z tmux extract colorize cp zsh-syntax-highlighting archlinux man)
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-source $ZSH/oh-my-zsh.sh
 
-if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git z tmux colorize fast-syntax-highlighting archlinux)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -82,19 +101,6 @@ if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-
-fpath+=('/home/transpalette/.nvm/versions/node/v10.3.0/lib/node_modules/pure-prompt/functions')
-
-autoload -U promptinit; promptinit
-prompt pure
-
-
-ZSH_THEME=""
-
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -107,11 +113,61 @@ alias commit='git commit -am '
 alias push='git push'
 alias pull='git pull'
 alias attach='tmux attach -t '
-alias space='df -h'
-alias zshrc='vim ~/.zshrc'
-alias fastboot='/opt/android-sdk/platform-tools/fastboot'
-alias unlock-tethering='sysctl net.ipv4.ip_default_ttl=65'
+alias zshrc='nvim ~/.zshrc'
+alias unlock-tethering='sudo sysctl net.ipv4.ip_default_ttl=65'
 alias tmux='TERM=xterm-256color tmux'
 alias man='pinfo -m'
-alias cat=bat
-alias vpn-connect='sudo openvpn --config /etc/openvpn/client.conf'
+alias vim=nvim
+alias space='du -ha -d 1 -t 500M | sort'
+alias calw='gcalcli calw'
+alias calm='gcalcli calm'
+alias py=ipython
+
+export EDITOR=/usr/bin/vim
+export WANDB_MODE=disabled
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/cactus/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/cactus/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/cactus/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/cactus/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/cactus/miniconda3/etc/profile.d/mamba.sh" ]; then
+	. "/home/cactus/miniconda3/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+
+
+alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE --entry-country ES arch --max-delay=21600 \
+      & sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      & sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      & drop-caches \
+      & yay -Syyu --noconfirm \
+      & cd /home/cactus/.oh-my-zsh/custom/themes/powerlevel10k & git pull \
+      & vim +PlugUpdate \
+      & vim +CocUpdate \
+      & flatpak update \
+      & mamba activate & mamba upgrade  --prefix /home/cactus/miniconda3 mamba \
+      & mamba update --all \
+      & mamba deactivate \
+      & cd'
+
+alias update-powerlevel10k='git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.env
