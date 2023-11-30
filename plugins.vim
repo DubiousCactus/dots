@@ -27,10 +27,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "Plug 'junegunn/limelight.vim'
 "Plug 'junegunn/goyo.vim'
 "Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'sudormrfbin/cheatsheet.nvim'
 "Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-tree/nvim-web-devicons' " This adds colors to the previous
 Plug 'nvim-tree/nvim-tree.lua'

@@ -5,39 +5,39 @@ function M.setup()
 
   tree.setup({
     hijack_cursor = true,
-    open_on_setup_file = true,
+    --open_on_setup_file = true,
     reload_on_bufenter = true,
     update_cwd = true,
     view = {
       adaptive_size = false,
-      mappings = {
-        list = {
-          { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
-          { key = "<C-v>", action = "" }, -- vsplit
-          { key = "<C-x>", action = "" }, -- split
-          { key = "<C-t>", action = "" }, -- tabnew
-          { key = "<BS>", action = "" }, -- close_node
-          { key = "<Tab>", action = "" }, -- preview
-          { key = "D", action = "" }, -- trash
-          { key = "[c", action = "" }, -- prev_git_item
-          { key = "]c", action = "" }, -- next_git_item
-          { key = "-", action = "" }, -- dir_up
-          { key = "s", action = "" }, -- system_open
-          { key = "W", action = "" }, -- collapse_all
-          { key = "g?", action = "" }, -- toggle_help
+      --mappings = {
+        --list = {
+          --{ key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
+          --{ key = "<C-v>", action = "" }, -- vsplit
+          --{ key = "<C-x>", action = "" }, -- split
+          --{ key = "<C-t>", action = "" }, -- tabnew
+          --{ key = "<BS>", action = "" }, -- close_node
+          --{ key = "<Tab>", action = "" }, -- preview
+          --{ key = "D", action = "" }, -- trash
+          --{ key = "[c", action = "" }, -- prev_git_item
+          --{ key = "]c", action = "" }, -- next_git_item
+          --{ key = "-", action = "" }, -- dir_up
+          --{ key = "s", action = "" }, -- system_open
+          --{ key = "W", action = "" }, -- collapse_all
+          --{ key = "g?", action = "" }, -- toggle_help
 
-          { key = "d", action = "cd" }, -- remove
-          { key = "x", action = "remove" }, -- cut
+          --{ key = "d", action = "cd" }, -- remove
+          --{ key = "x", action = "remove" }, -- cut
 
-          { key = "t", action = "cut" },
-          { key = "<Space>k", action = "prev_git_item" },
-          { key = "<Space>j", action = "next_git_item" },
-          { key = "u", action = "dir_up" },
-          { key = "'", action = "close_node" },
-          { key = '"', action = "collapse_all" },
-          { key = "?", action = "toggle_help" },
-        },
-      },
+          --{ key = "t", action = "cut" },
+          --{ key = "<Space>k", action = "prev_git_item" },
+          --{ key = "<Space>j", action = "next_git_item" },
+          --{ key = "u", action = "dir_up" },
+          --{ key = "'", action = "close_node" },
+          --{ key = '"', action = "collapse_all" },
+          --{ key = "?", action = "toggle_help" },
+        --},
+      --},
     },
     renderer = {
       full_name = true,
